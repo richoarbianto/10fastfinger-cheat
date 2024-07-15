@@ -6,8 +6,8 @@ import requests, random, time, bs4
 
 # Configuration parameters
 config = {
-    'email' : 'bolobolokun@gmail.com', # Replace with your 10FastFingers email
-    'password' : 'hahaha#123', # Replace with your 10FastFingers password
+    'email' : 'your_email@gmail.com', # Replace with your 10FastFingers email
+    'password' : 'your_password', # Replace with your 10FastFingers password
     'url_test' : 'https://10fastfingers.com/anticheat/view/2/6', # Replace with the URL of the 10FastFingers test
     'delay_between_keys' : 0.05,  # in seconds
     'delay_between_keys_is_random' : True, # Set to True to randomly delay between keys, False to use the specified delay
