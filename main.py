@@ -6,21 +6,48 @@ import requests, random, time, bs4
 
 # Configuration parameters
 config = {
-    'email' : 'your_email', # Replace with your 10FastFingers email
-    'password' : 'your_password', # Replace with your 10FastFingers password
-    'url_test' : 'https://10fastfingers.com/typing-test/english', # Replace with the URL of the 10FastFingers test
+    'email' : 'bolobolokun@gmail.com', # Replace with your 10FastFingers email
+    'password' : 'hahaha#123', # Replace with your 10FastFingers password
+    'url_test' : 'https://10fastfingers.com/anticheat/view/2/6', # Replace with the URL of the 10FastFingers test
     'delay_between_keys' : 0.05,  # in seconds
     'delay_between_keys_is_random' : True, # Set to True to randomly delay between keys, False to use the specified delay
     'is_fast_typing' : True,  # Set to True to enable fast typing, False to disable
-    'with_correction' : 2, # Number of correction mistakes to make during the test, 0 for no correction
-    'with_typo' : 2, # Number of typo mistakes to make during the test, 0 for no typo
-    'driver_path' : 'driver/geckodriver'  # Replace with the path
+    'with_correction' : 10, # Number of correction mistakes to make during the test, 0 for no correction
+    'with_typo' : 5, # Number of typo mistakes to make during the test, 0 for no typo
+    'driver_path' : 'driver/geckodriver',  # Replace with the path
+    'ocr_key' : 'K83554843688957', # Replace with your OCR API key or use my key, Register OCR API https://ocr.space/ocrapi/freekey (free 25k requests per month)
+    'language' : 'eng' # Replace with your preferred language (eng, dut, spa, ita, jpn)
 }
+# [Language code list] http://ocr.space/OCRAPI#PostParameters
+# Arabic=ara
+# Bulgarian=bul
+# Chinese(Simplified)=chs
+# Chinese(Traditional)=cht
+# Croatian = hrv
+# Czech = cze
+# Danish = dan
+# Dutch = dut
+# English = eng
+# Finnish = fin
+# French = fre
+# German = ger
+# Greek = gre
+# Hungarian = hun
+# Korean = kor
+# Italian = ita
+# Japanese = jpn
+# Polish = pol
+# Portuguese = por
+# Russian = rus
+# Slovenian = slv
+# Spanish = spa
+# Swedish = swe
+# Turkish = tur
 def delay():
     if config['delay_between_keys_is_random']:
         # Generate a random delay between 0.03 and 0.1 seconds for fast typing,
         # otherwise use the specified delay.
-        minimum, maximum = (0.03, 0.06) if config['is_fast_typing'] else (0.5, 0.8)
+        minimum, maximum = (0.01, 0.03) if config['is_fast_typing'] else (0.5, 0.8)
         return random.uniform(minimum, maximum)
     return config['delay_between_keys']
 
@@ -52,10 +79,9 @@ def send_character(driver, key):
     driver.find_element(By.ID, 'inputfield').send_keys(key)
 
 def image_to_text(filename):
-    # Register OCR API https://ocr.space/ocrapi/freekey (free 25k requests per month)
     payload = {'isOverlayRequired': False,
-               'apikey': 'K83554843688957', # Replace with your OCR API key
-               'language': 'eng'} # Replace with your preferred language (eng, deu, fra, ita, jpn)
+               'apikey': config['ocr_key'],
+               'language': config['language']}
     f = open(filename, 'rb')
     r = requests.post('https://api.ocr.space/parse/image', files={filename: f}, data=payload)
     try:
@@ -95,6 +121,7 @@ def main():
         # Check if login was successful
         if driver.current_url == 'https://10fastfingers.com/':
             print('Login failed, please check your email and password.')
+            driver.quit()
             return
         print('Login successful.')
 
@@ -122,6 +149,7 @@ def main():
         text = image_to_text(filename)
         if not text:
             print('Failed to extract text from the image.')
+            driver.quit()
             return
         print('Text extracted from the image :'+ text)
         for i in text.split(' '):

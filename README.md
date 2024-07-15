@@ -38,15 +38,17 @@ Edit the `main.py` file to fill in your 10FastFingers account details and set ot
 
 ```python
 config = {
-    'email' : 'your_email', # Replace with your 10FastFingers email
-    'password' : 'your_password', # Replace with your 10FastFingers password
-    'url_test' : 'https://10fastfingers.com/typing-test/english', # URL of the 10FastFingers test
+    'email' : 'bolobolokun@gmail.com', # Replace with your 10FastFingers email
+    'password' : 'hahaha#123', # Replace with your 10FastFingers password
+    'url_test' : 'https://10fastfingers.com/anticheat/view/2/6', # Replace with the URL of the 10FastFingers test
     'delay_between_keys' : 0.05,  # in seconds
-    'delay_between_keys_is_random' : True, # Random delay between keys
-    'is_fast_typing' : True,  # Enable fast typing
-    'with_correction' : 2, # Number of correction mistakes during the test
-    'with_typo' : 2, # Number of typo mistakes during the test
-    'driver_path' : 'driver/geckodriver'  # Replace with the path
+    'delay_between_keys_is_random' : True, # Set to True to randomly delay between keys, False to use the specified delay
+    'is_fast_typing' : True,  # Set to True to enable fast typing, False to disable
+    'with_correction' : 10, # Number of correction mistakes to make during the test, 0 for no correction
+    'with_typo' : 5, # Number of typo mistakes to make during the test, 0 for no typo
+    'driver_path' : 'driver/geckodriver',  # Replace with the path
+    'ocr_key' : 'K83554843688957', # Replace with your OCR API key or use my key, Register OCR API https://ocr.space/ocrapi/freekey (free 25k requests per month)
+    'language' : 'eng' # Replace with your preferred language (eng, dut, spa, ita, jpn)
 }
 ```
 
