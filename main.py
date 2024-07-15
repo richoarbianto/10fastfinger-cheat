@@ -14,6 +14,7 @@ config = {
     'is_fast_typing' : True,  # Set to True to enable fast typing, False to disable
     'with_correction' : 2, # Number of correction mistakes to make during the test, 0 for no correction
     'with_typo' : 2, # Number of typo mistakes to make during the test, 0 for no typo
+    'driver_path' : 'driver/geckodriver'  # Replace with the path
 }
 def delay():
     if config['delay_between_keys_is_random']:
@@ -73,7 +74,10 @@ def get_cookie(driver):
 
 def main():
     # Set up Selenium WebDriver
-    service = Service(executable_path='driver/geckodriver')
+    service = Service(executable_path=config['driver_path'])
+    # driver = webdriver.Chrome(service=service)
+    # driver = webdriver.Edge(service=service)
+    # driver = webdriver.Safari(service=service)
     driver = webdriver.Firefox(service=service)
     if config['email'] and config['password']:
         print('Login to your account...')
