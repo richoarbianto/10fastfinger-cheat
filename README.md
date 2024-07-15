@@ -3,8 +3,8 @@
 This script is designed to help users automatically complete 10FastFingers typing tests using Selenium. It can perform fast typing with options to introduce typos and corrections.
 
 ## Features
-
-- Fast typing with random delays between characters.
+- AntiCheat bypass
+- Custom Fast typing with random delays between characters.
 - Introduces typos and corrections during the test.
 - Automatically logs into your 10FastFingers account.
 
