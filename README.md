@@ -1,5 +1,7 @@
 # 10FastFingers Cheat Script
 
+[Output sample](https://github.com/richoarbianto/10fastfinger-cheat/play.gif)
+
 This script is designed to help users automatically complete 10FastFingers typing tests using Selenium. It can perform fast typing with options to introduce typos and corrections.
 
 ## Features
